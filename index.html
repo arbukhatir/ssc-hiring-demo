@@ -263,10 +263,24 @@ a:hover {
     top: 1rem;
 }
 
-/* Latin numerals stay upright and tabular inside Arabic text. */
+/*
+ * An isolated left-to-right run for Latin numerals inside Arabic text.
+ *
+ * `direction: ltr` is doing real work: without it the bidi algorithm resolves
+ * the space in "2026-09-05 10:24" as right-to-left and paints the time before
+ * the date. The isolate stops the run from disturbing the Arabic around it.
+ *
+ * APPLY TO AN INLINE ELEMENT ONLY -- wrap the number in <span class="num">.
+ * On a block or a table cell it also flips the box's own `text-align: start`
+ * to the left, so the value stops lining up with the label above it, and it
+ * reverses the label/value order in the mobile card layout. Never put it on
+ * a string of Arabic prose that merely contains digits; the digits already
+ * render correctly and the LTR base direction breaks the line wrapping.
+ *
+ * BidiNumeralDirectionTest asserts this.
+ */
 .num,
 time,
-td.num,
 .reference {
     font-variant-numeric: tabular-nums;
     direction: ltr;
@@ -2424,48 +2438,48 @@ dialog.confirm h2 {
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-primary class="reference">HR-20260908-000123</td>
+                            <td data-primary><span class="reference">HR-20260908-000123</span></td>
                             <td data-label="اسم المرشح">أحمد محمد</td>
                             <td data-label="المسمى الوظيفي">مدرب رياضي</td>
-                            <td data-label="تاريخ التقديم" class="num">2026-09-05</td>
+                            <td data-label="تاريخ التقديم"><span class="num">2026-09-05</span></td>
                             <td data-label="حالة الطلب"><span class="badge badge--progress"><span class="badge__icon" aria-hidden="true">◷</span><span>قيد المراجعة</span></span></td>
-                            <td data-label="آخر تحديث" class="num">2026-09-07</td>
+                            <td data-label="آخر تحديث"><span class="num">2026-09-07</span></td>
                             <td data-actions><a class="btn btn--ghost btn--sm" href="#view-detail" data-view="view-detail">عرض</a></td>
                         </tr>
                         <tr>
-                            <td data-primary class="reference">HR-20260908-000124</td>
+                            <td data-primary><span class="reference">HR-20260908-000124</span></td>
                             <td data-label="اسم المرشح">سالم عبدالله</td>
                             <td data-label="المسمى الوظيفي">مدير فريق أول</td>
-                            <td data-label="تاريخ التقديم" class="num">2026-09-03</td>
+                            <td data-label="تاريخ التقديم"><span class="num">2026-09-03</span></td>
                             <td data-label="حالة الطلب"><span class="badge badge--warning"><span class="badge__icon" aria-hidden="true">!</span><span>يحتاج معلومات إضافية</span></span></td>
-                            <td data-label="آخر تحديث" class="num">2026-09-06</td>
+                            <td data-label="آخر تحديث"><span class="num">2026-09-06</span></td>
                             <td data-actions><a class="btn btn--ghost btn--sm" href="#view-detail" data-view="view-detail">عرض</a></td>
                         </tr>
                         <tr>
-                            <td data-primary class="reference">HR-20260908-000125</td>
+                            <td data-primary><span class="reference">HR-20260908-000125</span></td>
                             <td data-label="اسم المرشح">ليلى حسن</td>
                             <td data-label="المسمى الوظيفي">أخصائي علاج طبيعي</td>
-                            <td data-label="تاريخ التقديم" class="num">2026-08-28</td>
+                            <td data-label="تاريخ التقديم"><span class="num">2026-08-28</span></td>
                             <td data-label="حالة الطلب"><span class="badge badge--success"><span class="badge__icon" aria-hidden="true">✓</span><span>موافق عليه</span></span></td>
-                            <td data-label="آخر تحديث" class="num">2026-09-02</td>
+                            <td data-label="آخر تحديث"><span class="num">2026-09-02</span></td>
                             <td data-actions><a class="btn btn--ghost btn--sm" href="#view-detail" data-view="view-detail">عرض</a></td>
                         </tr>
                         <tr>
-                            <td data-primary class="reference">HR-20260908-000126</td>
+                            <td data-primary><span class="reference">HR-20260908-000126</span></td>
                             <td data-label="اسم المرشح">خالد يوسف</td>
                             <td data-label="المسمى الوظيفي">مدرب لياقة بدنية</td>
-                            <td data-label="تاريخ التقديم" class="num">—</td>
+                            <td data-label="تاريخ التقديم"><span class="num">—</span></td>
                             <td data-label="حالة الطلب"><span class="badge badge--neutral"><span class="badge__icon" aria-hidden="true">✎</span><span>مسودة</span></span></td>
-                            <td data-label="آخر تحديث" class="num">2026-09-08</td>
+                            <td data-label="آخر تحديث"><span class="num">2026-09-08</span></td>
                             <td data-actions><a class="btn btn--ghost btn--sm" href="#view-form" data-view="view-form">تعديل</a></td>
                         </tr>
                         <tr>
-                            <td data-primary class="reference">HR-20260908-000127</td>
+                            <td data-primary><span class="reference">HR-20260908-000127</span></td>
                             <td data-label="اسم المرشح">منى إبراهيم</td>
                             <td data-label="المسمى الوظيفي">محلل أداء رياضي</td>
-                            <td data-label="تاريخ التقديم" class="num">2026-08-20</td>
+                            <td data-label="تاريخ التقديم"><span class="num">2026-08-20</span></td>
                             <td data-label="حالة الطلب"><span class="badge badge--danger"><span class="badge__icon" aria-hidden="true">✕</span><span>مرفوض</span></span></td>
-                            <td data-label="آخر تحديث" class="num">2026-08-25</td>
+                            <td data-label="آخر تحديث"><span class="num">2026-08-25</span></td>
                             <td data-actions><a class="btn btn--ghost btn--sm" href="#view-detail" data-view="view-detail">عرض</a></td>
                         </tr>
                     </tbody>
@@ -2739,7 +2753,7 @@ dialog.confirm h2 {
                     <dl class="detail-grid detail">
                         <div><dt>اسم النادي</dt><dd>نادي الشارقة الرياضي</dd></div>
                         <div><dt>أنشأ الطلب</dt><dd>نادي الشارقة الرياضي</dd></div>
-                        <div><dt>تاريخ التقديم</dt><dd class="num">2026-09-05 10:24</dd></div>
+                        <div><dt>تاريخ التقديم</dt><dd><span class="num">2026-09-05 10:24</span></dd></div>
                     </dl>
                 </div>
             </section>
@@ -2754,7 +2768,7 @@ dialog.confirm h2 {
                         <div><dt>الاسم الكامل</dt><dd>أحمد محمد</dd></div>
                         <div><dt>الجنسية</dt><dd>الإمارات العربية المتحدة</dd></div>
                         <div><dt>المؤهل العلمي</dt><dd>بكالوريوس علوم رياضية</dd></div>
-                        <div><dt>سنوات الخبرة</dt><dd class="num">8</dd></div>
+                        <div><dt>سنوات الخبرة</dt><dd><span class="num">8</span></dd></div>
                         <div><dt>جهة العمل الحالية / السابقة</dt><dd>أكاديمية رياضية تجريبية</dd></div>
                     </dl>
                 </div>
@@ -2770,8 +2784,8 @@ dialog.confirm h2 {
                         <div><dt>المسمى الوظيفي</dt><dd>مدرب رياضي</dd></div>
                         <div><dt>الإدارة</dt><dd>الإدارة الرياضية والفنية</dd></div>
                         <div><dt>نوع العقد</dt><dd>دوام كامل</dd></div>
-                        <div><dt>تاريخ المباشرة المطلوب</dt><dd class="num">2026-10-01</dd></div>
-                        <div><dt>النطاق الراتبي الشهري المقترح</dt><dd class="num">من 12,000 إلى 16,000 درهم شهريًا</dd></div>
+                        <div><dt>تاريخ المباشرة المطلوب</dt><dd><span class="num">2026-10-01</span></dd></div>
+                        <div><dt>النطاق الراتبي الشهري المقترح</dt><dd>من 12,000 إلى 16,000 درهم شهريًا</dd></div>
                     </dl>
                 </div>
             </section>
@@ -2827,7 +2841,7 @@ dialog.confirm h2 {
                             <dd><span class="badge badge--progress"><span class="badge__icon" aria-hidden="true">◷</span><span>قيد المراجعة</span></span></dd>
                         </div>
                         <div><dt>اسم المسؤول المعتمد</dt><dd>لا يوجد</dd></div>
-                        <div><dt>التاريخ</dt><dd class="num">لا يوجد</dd></div>
+                        <div><dt>التاريخ</dt><dd>لا يوجد</dd></div>
                         <div><dt>المراجع المسؤول</dt><dd>مراجع الموارد البشرية (تجريبي)</dd></div>
                     </dl>
 
@@ -2992,42 +3006,42 @@ dialog.confirm h2 {
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-primary class="reference">HR-20260908-000123</td>
+                            <td data-primary><span class="reference">HR-20260908-000123</span></td>
                             <td data-label="النادي">نادي الشارقة الرياضي</td>
                             <td data-label="اسم المرشح">أحمد محمد</td>
                             <td data-label="المسمى الوظيفي">مدرب رياضي</td>
                             <td data-label="الإدارة">الإدارة الرياضية والفنية</td>
-                            <td data-label="تاريخ التقديم" class="num">2026-09-05</td>
+                            <td data-label="تاريخ التقديم"><span class="num">2026-09-05</span></td>
                             <td data-label="حالة الطلب"><span class="badge badge--progress"><span class="badge__icon" aria-hidden="true">◷</span><span>قيد المراجعة</span></span></td>
                             <td data-actions>مراجع (تجريبي)</td>
                         </tr>
                         <tr>
-                            <td data-primary class="reference">HR-20260908-000130</td>
+                            <td data-primary><span class="reference">HR-20260908-000130</span></td>
                             <td data-label="النادي">نادي كلباء الرياضي الثقافي</td>
                             <td data-label="اسم المرشح">ليلى حسن</td>
                             <td data-label="المسمى الوظيفي">أخصائي علاج طبيعي</td>
                             <td data-label="الإدارة">الإدارة الطبية</td>
-                            <td data-label="تاريخ التقديم" class="num">2026-09-07</td>
+                            <td data-label="تاريخ التقديم"><span class="num">2026-09-07</span></td>
                             <td data-label="حالة الطلب"><span class="badge badge--info"><span class="badge__icon" aria-hidden="true">↑</span><span>تم التقديم</span></span></td>
                             <td data-actions>—</td>
                         </tr>
                         <tr>
-                            <td data-primary class="reference">HR-20260908-000131</td>
+                            <td data-primary><span class="reference">HR-20260908-000131</span></td>
                             <td data-label="النادي">نادي خورفكان الرياضي الثقافي</td>
                             <td data-label="اسم المرشح">سالم عبدالله</td>
                             <td data-label="المسمى الوظيفي">مدير فريق أول</td>
                             <td data-label="الإدارة">إدارة الفرق</td>
-                            <td data-label="تاريخ التقديم" class="num">2026-09-06</td>
+                            <td data-label="تاريخ التقديم"><span class="num">2026-09-06</span></td>
                             <td data-label="حالة الطلب"><span class="badge badge--warning"><span class="badge__icon" aria-hidden="true">!</span><span>يحتاج معلومات إضافية</span></span></td>
                             <td data-actions>مراجع (تجريبي)</td>
                         </tr>
                         <tr>
-                            <td data-primary class="reference">HR-20260908-000119</td>
+                            <td data-primary><span class="reference">HR-20260908-000119</span></td>
                             <td data-label="النادي">نادي الشارقة الرياضي</td>
                             <td data-label="اسم المرشح">خالد يوسف</td>
                             <td data-label="المسمى الوظيفي">مدرب لياقة بدنية</td>
                             <td data-label="الإدارة">الإدارة الرياضية والفنية</td>
-                            <td data-label="تاريخ التقديم" class="num">2026-08-30</td>
+                            <td data-label="تاريخ التقديم"><span class="num">2026-08-30</span></td>
                             <td data-label="حالة الطلب"><span class="badge badge--success"><span class="badge__icon" aria-hidden="true">✓</span><span>موافق عليه</span></span></td>
                             <td data-actions>مدير الموارد البشرية (تجريبي)</td>
                         </tr>
