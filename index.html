@@ -301,6 +301,10 @@ td.num,
     color: var(--ink-500);
 }
 
+/*
+ * The Government of Sharjah wordmark, used unaltered. Only the height is set —
+ * width follows the intrinsic 182 × 64 ratio, so the mark is never distorted.
+ */
 .topbar__logo {
     height: 30px;
     width: auto;
@@ -1796,13 +1800,13 @@ dialog.confirm h2 {
         border-radius: 0 0 var(--radius) var(--radius);
     }
 
-    /* --- Government strip: keep the wordmark, drop the second line --- */
+    /* --- Government strip: keep the emblem, drop the explanatory line --- */
     .topbar__inner {
         padding: 0.4rem 1rem;
         justify-content: center;
     }
 
-    .topbar__inner > .topbar__gov:last-child {
+    .topbar__gov--note {
         display: none;
     }
 
@@ -2290,8 +2294,10 @@ dialog.confirm h2 {
 <!-- ===================== GOVERNMENT STRIP ===================== -->
 <div class="topbar">
     <div class="topbar__inner">
-        <span class="topbar__gov">حكومة الشارقة</span>
-        <span class="topbar__gov">نظام داخلي — للمستخدمين المصرّح لهم</span>
+        <span class="topbar__gov topbar__gov--note">نظام داخلي — للمستخدمين المصرّح لهم</span>
+        <span class="topbar__gov topbar__gov--emblem">
+            <img class="topbar__logo" src="data:image/png;base64,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" alt="حكومة الشارقة" width="182" height="64">
+        </span>
     </div>
 </div>
 
